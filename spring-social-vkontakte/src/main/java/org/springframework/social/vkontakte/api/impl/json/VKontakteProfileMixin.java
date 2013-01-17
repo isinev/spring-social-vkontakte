@@ -39,7 +39,7 @@ class VKontakteProfileMixin {
             @JsonProperty("photo") String photo, @JsonProperty("photo_medium") String photoMedium, @JsonProperty("photo_big") String photoBig,
             @JsonProperty("home_phone") String homePhone, @JsonProperty("mobile_phone") String mobilePhone,
             @JsonProperty("bdate") @JsonDeserialize(using = VKDateDeserializer.class) VKontakteDate birthDate, 
-            @JsonProperty("sex") @JsonDeserialize(using = VKGenderDeserializer.class) String gender) {
+            @JsonProperty("sex") @JsonDeserialize(using = VKGenderDeserializer.class) String gender, @JsonProperty("city") String city) {
     }
     
     static class VKGenderDeserializer extends JsonDeserializer<String> {
