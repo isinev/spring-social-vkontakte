@@ -42,7 +42,7 @@ class FriendsTemplate extends AbstractVKontakteOperations implements FriendsOper
         requireAuthorization();
         Properties props = new Properties();
 
-        props.put("fields", "uid,first_name,last_name,photo,photo_medium,photo_big,contacts,bdate,sex,screen_name");
+        props.put("fields", "uid,first_name,last_name,photo,photo_medium,photo_big,contacts,bdate,sex,screen_name,city");
         URI uri = URIBuilder.fromUri(makeOperationURL("friends.get", props)).build();
 
         VKontakteProfiles profiles = restTemplate.getForObject(uri, VKontakteProfiles.class);
@@ -57,7 +57,21 @@ class FriendsTemplate extends AbstractVKontakteOperations implements FriendsOper
         Properties props = new Properties();
 
         props.put("uid", userId.trim());
-        props.put("fields", "uid,first_name,last_name,photo,photo_medium,photo_big,contacts,bdate,sex,screen_name");
+        props.put("fields", "uid,first_name,last_name,photo,photo_medium,photo_big,contacts,bdate,sex,screen_name,city");
+        URI uri = URIBuilder.fromUri(makeOperationURL("friends.get", props)).build();
+
+        VKontakteProfiles profiles = restTemplate.getForObject(uri, VKontakteProfiles.class);
+        checkForError(profiles);
+
+        return profiles.getProfiles();
+    }
+
+    @Override
+    public List<VKontakteProfile> getUidsOnly() {
+        requireAuthorization();
+        Properties props = new Properties();
+
+        props.put("fields", "uid");
         URI uri = URIBuilder.fromUri(makeOperationURL("friends.get", props)).build();
 
         VKontakteProfiles profiles = restTemplate.getForObject(uri, VKontakteProfiles.class);

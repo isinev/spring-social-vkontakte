@@ -40,4 +40,6 @@ public interface FriendsOperations {
      * @throws org.springframework.social.vkontakte.api.VKontakteErrorException if VKontakte returned error.
      */
     public List<VKontakteProfile> get(String userId);
+
+    public List<VKontakteProfile> getUidsOnly();
 }
